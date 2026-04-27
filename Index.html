@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!--
+  index.html — The STRUCTURE of your website
+  Think of HTML as the skeleton of your page.
+  - CSS (style.css) adds the skin/appearance
+  - JavaScript (script.js) adds the brain/behavior
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- This makes your site look good on mobile phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow — My Mini Project</title>
+
+  <!-- 🔗 LINK 1: Connecting CSS to HTML -->
+  <!-- rel="stylesheet" tells the browser this file contains styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Fonts — a free font we load from the internet -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- =============================================
+       NAVBAR (Navigation Bar)
+       This sticks to the top of the page
+  ============================================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">
+      <!-- 🌀 Logo mark -->
+      <span class="logo-dot"></span>
+      TaskFlow
+    </div>
+
+    <div class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#features">Features</a>
+      <a href="#todo">To-Do</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <!-- 🌙 Dark mode toggle button (JS will handle this) -->
+    <button class="theme-btn" id="themeBtn" title="Toggle dark mode">
+      <span id="themeIcon">🌙</span>
+    </button>
+  </nav>
+
+
+  <!-- =============================================
+       HERO SECTION (The big welcome area)
+  ============================================== -->
+  <section class="hero" id="hero">
+    <!-- Decorative background blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="hero-content">
+      <span class="hero-badge">✦ Built for BCA Students</span>
+      <h1 class="hero-title">
+        Organize your life,<br/>
+        <span class="accent">one task at a time.</span>
+      </h1>
+      <p class="hero-subtitle">
+        A simple, modern mini project to help you learn
+        HTML, CSS &amp; JavaScript — by actually building something real.
+      </p>
+      <div class="hero-btns">
+        <!-- Clicking this scrolls to the To-Do section -->
+        <a href="#todo" class="btn btn-primary">Start Tasking →</a>
+        <a href="#contact" class="btn btn-outline">Contact Us</a>
+      </div>
+
+      <!-- Small stats row -->
+      <div class="hero-stats">
+        <div class="stat"><strong>3</strong><span>Core Files</span></div>
+        <div class="stat"><strong>100%</strong><span>Vanilla JS</span></div>
+        <div class="stat"><strong>∞</strong><span>Things to Learn</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       FEATURES SECTION (Cards explaining the project)
+  ============================================== -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <h2>What you'll learn</h2>
+      <p>This project covers the core building blocks of frontend development.</p>
+    </div>
+
+    <div class="features-grid">
+      <!-- Each .card is one feature card -->
+      <div class="card icon">
+        <div class="card-icon">📄</div>
+        <h3>HTML Structure</h3>
+        <p>Semantic tags like &lt;nav&gt;, &lt;section&gt;, &lt;form&gt; give meaning to your content.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>CSS Styling</h3>
+        <p>Flexbox, Grid, CSS variables, animations — all used in this very page!</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>JavaScript Logic</h3>
+        <p>DOM manipulation, event listeners, form validation — real interactivity.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Responsive Design</h3>
+        <p>Media queries make this look great on both your phone and laptop.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       TO-DO LIST SECTION (JavaScript feature)
+  ============================================== -->
+  <section class="todo-section" id="todo">
+    <div class="section-header">
+      <h2>Your Task List</h2>
+      <p>Here your task is mentioned.</p>
+    </div>
+
+    <div class="todo-container">
+      <!-- Input area for adding tasks -->
+      <div class="todo-input-row">
+        <!--
+          id="taskInput" lets JavaScript find this element.
+          placeholder is the grey hint text inside the box.
+        -->
+        <input
+          type="text"
+          id="taskInput"
+          placeholder="What do you need to do?"
+          maxlength="80"
+        />
+        <!-- onclick="addTask()" calls the addTask function in script.js -->
+        <button class="btn btn-primary" onclick="addTask()">Add Task</button>
+      </div>
+
+      <!-- Filter buttons -->
+      <div class="todo-filters">
+        <button class="filter-btn active" onclick="filterTasks('all', this)">All</button>
+        <button class="filter-btn" onclick="filterTasks('active', this)">Active</button>
+        <button class="filter-btn" onclick="filterTasks('done', this)">Done</button>
+      </div>
+
+      <!-- Task list — JavaScript will ADD items here dynamically -->
+      <ul class="task-list" id="taskList">
+        <!-- Tasks appear here when you click "Add Task" -->
+      </ul>
+
+      <!-- Summary row -->
+      <div class="todo-footer" id="todoFooter" style="display:none;">
+        <span id="taskCount">0 tasks remaining</span>
+        <button class="clear-btn" onclick="clearCompleted()">Clear Completed</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       CONTACT FORM SECTION
+  ============================================== -->
+  <section class="contact-section" id="contact">
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h2>Say Hello 👋</h2>
+        <p>
+          Practice working with forms! This form uses JavaScript to validate
+          your input and show feedback messages — no backend needed.
+        </p>
+        <ul class="contact-meta">
+          <li>📧 hello@taskflow.dev</li>
+          <li>🏫 Built as a BCA Mini Project</li>
+          <li>💡 Modify this freely for your own use!</li>
+        </ul>
+      </div>
+
+      <div class="contact-form-box">
+        <!--
+          id="contactForm" — JavaScript will find this form
+          onsubmit="return handleSubmit(event)" — runs when user clicks Submit
+          "return" is important: it prevents page from refreshing
+        -->
+        <form id="contactForm" onsubmit="return handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="e.g. Riya Sharma" />
+            <!-- Error messages appear here (set by JavaScript) -->
+            <span class="error-msg" id="nameError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="e.g. riya@gmail.com" />
+            <span class="error-msg" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="4" placeholder="Write your message here..."></textarea>
+            <span class="error-msg" id="messageError"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary full-width">Send Message ✉️</button>
+
+          <!-- Success / error toast shown after submit -->
+          <div class="form-toast" id="formToast"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       FOOTER
+  ============================================== -->
+  <footer class="footer">
+    <p>
+      Built with ❤️ using only <strong>HTML, CSS &amp; JavaScript</strong>.
+      &nbsp;·&nbsp; BCA Mini Project &nbsp;·&nbsp;
+      <span id="year"></span>
+    </p>
+  </footer>
+
+
+  <!-- 🔗 LINK 2: Connecting JavaScript to HTML -->
+  <!--
+    IMPORTANT: The <script> tag goes at the BOTTOM of <body>.
+    Why? So the HTML loads first, then JS runs.
+    If you put it in <head>, JS tries to find elements that don't exist yet!
+    src="script.js" tells the browser which file to load.
+  -->
+  <script src="script.js"></script>
+
+</body>
+</html>
